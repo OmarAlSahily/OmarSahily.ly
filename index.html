@@ -3,299 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omar Al Sahily | Network & Security Ops</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <title>Network & Security Ops Engineer</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;600&display=swap" rel="stylesheet">
-    <style>
-        /* --- Color Profile Integration --- */
-        :root {
-            /* New Color Palette based on the provided image */
-            --bg-darkest: #042f2e;   /* Darkest Teal */
-            --bg-dark: #063a39;      /* Dark Teal */
-            --bg-medium: #084c4a;    /* Medium Dark Teal */
-            --teal-primary: #0a5e5c; /* Primary Teal */
-            --teal-light: #0d7572;   /* Light Teal */
-
-            /* Applying to Site Variables */
-            --bg-color: var(--bg-darkest);
-            --primary-color: var(--teal-light); /* For highlights, primary buttons, glowing text */
-            --secondary-color: var(--teal-primary); /* For secondary buttons, accents */
-            --text-color: #e0f2f1; /* Lightest teal for main text for good contrast */
-            --heading-color: #ffffff; /* White for headings for maximum contrast */
-            --dim-text: #b2dfdb; /* Dimmed text for secondary info */
-            
-            --card-bg: rgba(6, 58, 57, 0.8); /* Based on --bg-dark with transparency */
-            --glass-border: rgba(13, 117, 114, 0.3); /* Based on --teal-light with transparency */
-            --glow-color: rgba(13, 117, 114, 0.6); /* For glowing effects */
-            
-            --terminal-bg: #042f2e;
-            --terminal-header: #063a39;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        /* --- Navbar & Hero --- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            border-bottom: 1px solid var(--glass-border);
-            position: fixed;
-            width: 100%;
-            background: rgba(4, 47, 46, 0.9); /* --bg-darkest with transparency */
-            backdrop-filter: blur(5px);
-            z-index: 100;
-        }
-
-        .logo {
-            font-family: 'Fira Code', monospace;
-            font-weight: 700;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            text-shadow: 0 0 10px var(--glow-color);
-        }
-
-        .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { text-decoration: none; color: var(--text-color); font-family: 'Fira Code', monospace; font-size: 0.9rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary-color); text-shadow: 0 0 8px var(--glow-color); }
-
-        .btn-contact { border: 1px solid var(--primary-color); padding: 5px 15px; border-radius: 2px; color: var(--primary-color) !important; }
-        .btn-contact:hover { background: var(--primary-color); color: var(--bg-darkest) !important; box-shadow: 0 0 15px var(--glow-color); }
-
-        .hero { 
-            height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 0 10%; 
-            position: relative; 
-            padding-top: 60px;
-        }
-
-        .terminal-text { font-family: 'Fira Code', monospace; color: var(--primary-color); margin-bottom: 10px; }
-        h1 { font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; color: var(--heading-color); }
-        p { font-size: 1.2rem; color: var(--dim-text); margin-bottom: 30px; max-width: 500px; }
-        
-        .status-indicator { display: inline-flex; align-items: center; gap: 10px; background: rgba(13, 117, 114, 0.1); padding: 8px 16px; border-radius: 20px; font-family: 'Fira Code', monospace; font-size: 0.8rem; border: 1px solid var(--glass-border); margin-bottom: 40px; }
-        .dot { width: 8px; height: 8px; background-color: var(--primary-color); border-radius: 50%; box-shadow: 0 0 10px var(--primary-color); animation: blink 2s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
-        .btn { padding: 12px 30px; text-decoration: none; font-weight: 600; border-radius: 2px; transition: all 0.3s ease; display: inline-block;}
-        .primary { background-color: var(--primary-color); color: var(--bg-darkest); box-shadow: 0 0 15px var(--glow-color); }
-        .primary:hover { background-color: #fff; box-shadow: 0 0 20px #fff; }
-        .secondary { border: 1px solid var(--text-color); color: var(--text-color); margin-left: 15px; }
-        .secondary:hover { border-color: var(--primary-color); color: var(--primary-color); }
-
-        .visual-center { position: relative; width: 300px; height: 300px; display: flex; justify-content: center; align-items: center; }
-        .outer-circle { width: 100%; height: 100%; border: 2px solid rgba(13, 117, 114, 0.3); border-radius: 50%; position: absolute; animation: spin 10s linear infinite; border-top: 2px solid var(--primary-color); }
-        .inner-circle { width: 60%; height: 60%; background: radial-gradient(circle, rgba(13, 117, 114, 0.2) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 1px dashed var(--primary-color); box-shadow: 0 0 30px rgba(13, 117, 114, 0.2); }
-        .icon { font-size: 3rem; color: var(--primary-color); }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .network-grid { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(13, 117, 114, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(13, 117, 114, 0.05) 1px, transparent 1px); background-size: 50px 50px; z-index: -1; }
-
-        /* --- General Section Styles --- */
-        .section-container { padding: 80px 10%; border-top: 1px solid var(--glass-border); }
-        .section-title { font-family: 'Fira Code', monospace; font-size: 1.8rem; margin-bottom: 40px; color: var(--heading-color); }
-        .hash { color: var(--secondary-color); }
-
-        /* --- About Terminal --- */
-        .terminal-window { background: var(--terminal-bg); border: 1px solid var(--glass-border); border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 800px; }
-        .terminal-header { background: var(--terminal-header); padding: 10px 15px; border-radius: 6px 6px 0 0; display: flex; align-items: center; border-bottom: 1px solid var(--glass-border); }
-        .btn-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 8px; }
-        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
-        .title { margin-left: 10px; font-family: monospace; color: var(--dim-text); font-size: 0.8rem; }
-        .terminal-body { padding: 20px; font-family: 'Fira Code', monospace; color: var(--text-color); font-size: 0.95rem; }
-        .cmd { color: var(--primary-color); }
-        .highlight { color: var(--heading-color); font-weight: bold; border-bottom: 1px dashed var(--primary-color); }
-
-        /* --- Skills Topology Grid --- */
-        .topology-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .skill-card { background: var(--card-bg); border: 1px solid var(--glass-border); padding: 25px; position: relative; transition: 0.3s; }
-        .skill-card:hover { border-color: var(--primary-color); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(13, 117, 114, 0.2); }
-        .skill-card h3 { margin-bottom: 15px; color: var(--heading-color); font-family: 'Fira Code', monospace; }
-        .skill-card ul { list-style: none; }
-        .skill-card li { margin-bottom: 8px; color: var(--dim-text); padding-left: 15px; position: relative; }
-        .skill-card li::before { content: ">"; position: absolute; left: 0; color: var(--secondary-color); font-family: monospace; }
-        .icon-box { font-size: 2rem; margin-bottom: 15px; color: var(--primary-color); }
-
-        /* --- Logs / Projects --- */
-        .log-entry { display: flex; border-left: 2px solid var(--secondary-color); margin-bottom: 30px; padding-left: 20px; position: relative; }
-        .log-entry::before { content: ""; width: 10px; height: 10px; background: var(--bg-color); border: 2px solid var(--primary-color); border-radius: 50%; position: absolute; left: -7px; top: 0; box-shadow: 0 0 5px var(--glow-color); }
-        .log-date { min-width: 120px; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--secondary-color); padding-top: 2px; }
-        .log-details h3 { color: var(--heading-color); margin-bottom: 5px; }
-        .log-desc { color: var(--dim-text); margin-bottom: 10px; font-size: 0.95rem; }
-        .tags span { display: inline-block; background: rgba(13, 117, 114, 0.1); color: var(--primary-color); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-family: 'Fira Code', monospace; margin-right: 5px; border: 1px solid var(--glass-border); }
-
-        /* --- Footer --- */
-        footer { text-align: center; padding: 40px; border-top: 1px solid var(--glass-border); font-family: 'Fira Code', monospace; background: var(--bg-darkest); }
-        footer a { color: var(--primary-color); text-decoration: none; }
-        .copyright { color: var(--dim-text); font-size: 0.8rem; margin-top: 10px; }
-    </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">&lt;Omar_Sahily /&gt;</div>
+        <div class="logo">&lt;SecOps /&gt;</div>
         <ul class="nav-links">
-            <li><a href="#about">/whoami</a></li>
-            <li><a href="#skills">/topology</a></li>
-            <li><a href="#projects">/logs</a></li>
-            <li><a href="#contact" class="btn-contact">Initiate_Handshake</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Network Topology</a></li>
+            <li><a href="#projects">Logs</a></li>
+            <li><a href="#contact" class="btn-contact">Connect</a></li>
         </ul>
     </nav>
 
     <header class="hero">
-        <div class="network-grid"></div>
-        
-        <div class="content">
-            <h2 class="terminal-text">> Executing security_protocols.sh...</h2>
-            <h1>DEFEND. DETECT. RESPOND.</h1>
-            <p>Network & Security Operations Engineer specialized in Palo Alto Networks & Cortex XSIAM.</p>
+        <div class="network-grid"></div> <div class="content">
+            <h2 class="terminal-text">> Initializing connection...</h2>
+            <h1>SECURE. MONITOR. PROTECT.</h1>
+            <p>Network & Security Operations Engineer</p>
             
             <div class="status-indicator">
-                <span class="dot"></span> Status: Operational | Loc: Benghazi, LY
+                <span class="dot"></span> System Status: Online
             </div>
 
             <div class="cta-buttons">
                 <a href="#projects" class="btn primary">View Operations</a>
-                <a href="https://linkedin.com/in/omar-alsahily" target="_blank" class="btn secondary">LinkedIn Profile</a>
+                <a href="#contact" class="btn secondary">Initiate Handshake</a>
             </div>
         </div>
 
         <div class="visual-center">
             <div class="circle outer-circle"></div>
             <div class="circle inner-circle">
-                <span class="icon">🛡️</span>
+                <span class="icon">🔒</span>
             </div>
             <div class="scanning-line"></div>
         </div>
     </header>
-
-    <section id="about" class="section-container">
-        <h2 class="section-title"><span class="hash">#</span> /var/log/about_me</h2>
-        <div class="about-content">
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <span class="btn-dot red"></span>
-                    <span class="btn-dot yellow"></span>
-                    <span class="btn-dot green"></span>
-                    <span class="title">user_profile.txt</span>
-                </div>
-                <div class="terminal-body">
-                    <p>> <span class="cmd">cat profile_summary</span></p>
-                    <p>Security Engineer with hands-on experience in SOC operations, incident response, and threat analysis. Specialized in deploying Palo Alto firewalls from scratch and managing Cortex XDR environments.</p>
-                    <br>
-                    <p>> <span class="cmd">echo $KEY_ACHIEVEMENT</span></p>
-                    <p class="highlight">Ranked in Top 1% of TryHackMe Global Users.</p>
-                    <br>
-                    <p>> <span class="cmd">echo $CURRENT_FOCUS</span></p>
-                    <p>Defending organizations against modern cyber threats & Advancing in Python Automation.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="section-container">
-        <h2 class="section-title"><span class="hash">#</span> /etc/network/topology</h2>
-        <div class="topology-grid">
-            
-            <div class="skill-card">
-                <div class="icon-box">👁️</div>
-                <h3>SOC Operations</h3>
-                <ul>
-                    <li>Cortex XSIAM / XDR</li>
-                    <li>Incident Response</li>
-                    <li>Threat Analysis</li>
-                    <li>Alert Triage</li>
-                </ul>
-            </div>
-
-            <div class="skill-card">
-                <div class="icon-box">🔒</div>
-                <h3>Network Defense</h3>
-                <ul>
-                    <li>Palo Alto Firewalls</li>
-                    <li>GlobalProtect VPN</li>
-                    <li>Zero Trust Arch</li>
-                    <li>Policy Management</li>
-                </ul>
-            </div>
-
-            <div class="skill-card">
-                <div class="icon-box">📜</div>
-                <h3>Certifications</h3>
-                <ul>
-                    <li>Palo Alto PSE: Cortex</li>
-                    <li>Palo Alto PCXE (Candidate)</li>
-                    <li>TryHackMe SAL1</li>
-                </ul>
-            </div>
-
-            <div class="skill-card">
-                <div class="icon-box">🐍</div>
-                <h3>Automation & OS</h3>
-                <ul>
-                    <li>Linux Administration</li>
-                    <li>Bash Scripting</li>
-                    <li>Python (Learning Path)</li>
-                    <li>Windows Security</li>
-                </ul>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="projects" class="section-container">
-        <h2 class="section-title"><span class="hash">#</span> /home/omar/operations_log</h2>
-        
-        <div class="log-entry">
-            <div class="log-date">2024 - PRESENT</div>
-            <div class="log-details">
-                <h3>Ocean Technology | Firewall Deployment</h3>
-                <p class="log-desc">Deployed and configured Palo Alto firewalls from scratch. Designed security policies aligned with organizational requirements and implemented GlobalProtect VPN for secure remote access.</p>
-                <div class="tags">
-                    <span>#PaloAlto</span> <span>#Firewall</span> <span>#VPN</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="log-entry">
-            <div class="log-date">2024 - PRESENT</div>
-            <div class="log-details">
-                <h3>Cortex XDR Security Analysis</h3>
-                <p class="log-desc">Acting as Security Analyst monitoring alerts, investigating incidents, and mitigating threats using Cortex XSIAM/XDR technologies.</p>
-                <div class="tags">
-                    <span>#XDR</span> <span>#ThreatHunting</span> <span>#SOC</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="log-entry">
-            <div class="log-date">2023</div>
-            <div class="log-details">
-                <h3>CyberTalents Blue Team Scholarship</h3>
-                <p class="log-desc">Intensive training in Digital Forensics, Malware Analysis, and SOC operations.</p>
-                <div class="tags">
-                    <span>#BlueTeam</span> <span>#Forensics</span>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <footer id="contact">
-        <p>Connect via: <a href="mailto:omar.k.sahle@gmail.com">omar.k.sahle@gmail.com</a></p>
-        <p class="copyright">© 2025 Omar Al Sahily. System Secure.</p>
-    </footer>
 
 </body>
 </html>
