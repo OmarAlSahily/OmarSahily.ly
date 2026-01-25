@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Omar Al Sahily | SecOps Engineer</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="critical.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,8 +20,8 @@
             <li><a href="#about">/bio</a></li>
             <li><a href="#experience">/ops_logs</a></li>
             <li><a href="#training">/training</a></li>
-            <li><a href="#certs">/certs</a></li>
             <li><a href="#speed">/benchmark</a></li>
+            <li><a href="#threat-map" style="color:#ff5f56">/live_map</a></li>
             <li><a href="#contact" class="btn-contact">Connect</a></li>
         </ul>
     </nav>
@@ -39,6 +42,7 @@
                 <a href="https://medium.com/@omar.k.alsahily" target="_blank" class="btn secondary">Read Articles</a>
             </div>
         </div>
+        
         <div class="visual-center">
             <div class="circle outer-circle"></div>
             <div class="circle inner-circle">
@@ -54,7 +58,7 @@
             <div class="bio-text">
                 <h3><i class="fas fa-user-graduate"></i> The Origin Story</h3>
                 <p>
-                    Raised in an educated household, my eyes opened to the world of technology through floppy disks, Flash games, and the tactical challenges of IGI. This early exposure sparked a lifelong passion for computers and hacking.
+                    Raised in an educated household, my eyes opened to the world of technology through floppy disks, Flash games, and the tactical challenges of <strong>Project IGI</strong>. This early exposure sparked a lifelong passion for computers and hacking.
                 </p>
                 <p>
                     I am a Computer Science graduate from the <strong>University of Benghazi (Spring 2025)</strong>. While my formal journey began late in high school, I officially entered the professional cybersecurity arena in <strong>January 2024</strong> with <em>Ocean Technology</em>, moving from self-study to enterprise-grade operations.
@@ -131,27 +135,27 @@
         <h2 class="section-title"><span class="hash">#</span> /usr/bin/training_modules</h2>
         <div class="grid-gallery">
             <div class="gallery-item">
-                <div class="img-placeholder">EDU 210 Image</div> 
+                <div class="img-placeholder"><i class="fas fa-book"></i> EDU 210</div> 
                 <span>Palo Alto EDU 210</span>
             </div>
             <div class="gallery-item">
-                <div class="img-placeholder">EDU 330 Image</div>
+                <div class="img-placeholder"><i class="fas fa-book"></i> EDU 330</div>
                 <span>Palo Alto EDU 330</span>
             </div>
             <div class="gallery-item">
-                <div class="img-placeholder">XSIAM Analyst Image</div>
+                <div class="img-placeholder"><i class="fas fa-shield-alt"></i> EDU 260</div>
                 <span>Cortex XSIAM Analyst</span>
             </div>
             <div class="gallery-item">
-                <div class="img-placeholder">XSIAM Eng Image</div>
+                <div class="img-placeholder"><i class="fas fa-cogs"></i> EDU 262</div>
                 <span>Cortex XSIAM Engineer</span>
             </div>
             <div class="gallery-item">
-                <div class="img-placeholder">AD Hacking Image</div>
+                <div class="img-placeholder"><i class="fab fa-windows"></i> AD Hacking</div>
                 <span>Active Directory for Hackers</span>
             </div>
             <div class="gallery-item">
-                <div class="img-placeholder">AoC 2025 Image</div>
+                <div class="img-placeholder"><i class="fas fa-snowman"></i> AoC 2025</div>
                 <span>Advent of Cyber 2025</span>
             </div>
         </div>
@@ -187,6 +191,22 @@
                 <p>In incident response, speed matters. I type at an average of <strong>90+ WPM</strong> with peaks of 110 WPM at 100% accuracy.</p>
                 <p class="challenge-text">Think you can beat me? <em>git gud.</em></p>
                 </div>
+        </div>
+    </section>
+
+    <section id="threat-map" class="section-container">
+        <h2 class="section-title"><span class="hash">#</span> /net/live_threat_intel</h2>
+        
+        <div class="map-container">
+            <div class="map-header">
+                <span class="blinking-dot"></span> LIVE GLOBAL ATTACKS
+            </div>
+            <iframe 
+                src="https://cybermap.kaspersky.com/en/widget/dynamic/dark" 
+                width="100%" 
+                height="600" 
+                frameborder="0">
+            </iframe>
         </div>
     </section>
 
