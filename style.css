@@ -1,281 +1,112 @@
-/* --- Color Profile: Deep Defense --- */
-:root {
-    /* الألوان المستخرجة من الصورة */
-    --bg-color: #111613;       /* Black/Dark Green Background */
-    --card-bg: #172B23;        /* Dark Green for Cards/Terminal */
-    --primary-green: #2F6542;  /* Medium Green for Accents/Borders */
-    
-    /* ألوان مشتقة للإضاءة والنصوص */
-    --text-color: #e0e0e0;     /* أبيض مكسور للنصوص */
-    --heading-color: #ffffff;  /* أبيض ناصع للعناوين */
-    --dim-text: #8aaaaa;       /* لون نص ثانوي */
-    
-    /* تأثيرات الزجاج والتوهج */
-    --glass-border: rgba(47, 101, 66, 0.5); /* حدود شفافة بنفس درجة الأخضر */
-    --glow-color: rgba(47, 101, 66, 0.4);   /* توهج خفيف وغير مزعج */
-    
-    /* ألوان التيرمينال */
-    --terminal-bg: #0e1210;    /* أغمق قليلاً من الخلفية */
-    --terminal-header: #172B23;
+/* --- About Grid Layout --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+@media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+
+.bio-text p { margin-bottom: 20px; line-height: 1.6; color: var(--dim-text); }
+.bio-text strong { color: #fff; }
+
+.activities-box {
+    background: rgba(23, 43, 35, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-}
-
-/* --- Navbar --- */
-.navbar {
+.activity-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    border-bottom: 1px solid var(--glass-border);
-    position: fixed;
-    width: 100%;
-    background: rgba(17, 22, 19, 0.95); /* نفس لون الخلفية مع شفافية بسيطة */
-    backdrop-filter: blur(10px);
-    z-index: 100;
+    gap: 15px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed var(--glass-border);
 }
+.act-icon { color: var(--primary-green); font-size: 1.5rem; }
+.mini-img { width: 100%; border-radius: 4px; margin-top: 10px; border: 1px solid var(--primary-green); opacity: 0.8; }
 
-.logo {
-    font-family: 'Fira Code', monospace;
-    font-weight: 700;
-    color: var(--primary-green);
-    /* جعلنا اللوجو أفتح قليلاً ليبرز */
-    filter: brightness(1.5);
-    font-size: 1.2rem;
+/* --- Tech List inside Logs --- */
+.tech-list { margin-top: 10px; margin-bottom: 15px; padding-left: 20px; }
+.tech-list li { color: #b0c4b1; margin-bottom: 5px; }
+
+/* --- Gallery Grid (Training) --- */
+.grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
 }
-
-.nav-links { list-style: none; display: flex; gap: 30px; }
-.nav-links a { 
-    text-decoration: none; 
-    color: var(--text-color); 
-    font-family: 'Fira Code', monospace; 
-    font-size: 0.9rem; 
-    transition: 0.3s; 
-}
-.nav-links a:hover { 
-    color: #4da568; /* درجة أفتح من الأخضر عند التحويم */
-}
-
-.btn-contact { 
-    border: 1px solid var(--primary-green); 
-    padding: 6px 18px; 
-    border-radius: 4px; 
-    color: #fff !important;
-    background: rgba(47, 101, 66, 0.2);
-}
-.btn-contact:hover { 
-    background: var(--primary-green); 
-    color: #fff !important; 
-    box-shadow: 0 0 15px var(--glow-color); 
-}
-
-/* --- Hero Section --- */
-.hero { 
-    height: 100vh; 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-    padding: 0 10%; 
-    position: relative; 
-    padding-top: 60px;
-}
-
-.terminal-text { 
-    font-family: 'Fira Code', monospace; 
-    color: #5bb57b; /* نسخة أفتح من الأخضر للقراءة */
-    margin-bottom: 10px; 
-}
-
-h1 { 
-    font-size: 3rem; 
-    font-weight: 800; 
-    line-height: 1.1; 
-    margin-bottom: 20px; 
-    color: var(--heading-color); 
-}
-
-p { 
-    font-size: 1.2rem; 
-    color: var(--dim-text); 
-    margin-bottom: 30px; 
-    max-width: 500px; 
-}
-
-.status-indicator { 
-    display: inline-flex; 
-    align-items: center; 
-    gap: 10px; 
-    background: var(--card-bg); 
-    padding: 8px 16px; 
-    border-radius: 20px; 
-    font-family: 'Fira Code', monospace; 
-    font-size: 0.8rem; 
-    border: 1px solid var(--primary-green); 
-    margin-bottom: 40px; 
-}
-
-.dot { 
-    width: 8px; 
-    height: 8px; 
-    background-color: #4da568; 
-    border-radius: 50%; 
-    box-shadow: 0 0 8px #4da568; 
-    animation: blink 2s infinite; 
-}
-
-@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-
-.btn { 
-    padding: 12px 30px; 
-    text-decoration: none; 
-    font-weight: 600; 
-    border-radius: 4px; 
-    transition: all 0.3s ease; 
-    display: inline-block;
-}
-
-.primary { 
-    background-color: var(--primary-green); 
-    color: #fff; 
-    border: 1px solid var(--primary-green);
-}
-.primary:hover { 
-    background-color: #3e8555; 
-    border-color: #3e8555;
-    box-shadow: 0 0 20px rgba(47, 101, 66, 0.4); 
-}
-
-.secondary { 
-    border: 1px solid var(--dim-text); 
-    color: var(--dim-text); 
-    margin-left: 15px; 
-}
-.secondary:hover { 
-    border-color: #fff; 
-    color: #fff; 
-}
-
-/* --- Visual Elements --- */
-.visual-center { position: relative; width: 300px; height: 300px; display: flex; justify-content: center; align-items: center; }
-
-.outer-circle { 
-    width: 100%; height: 100%; 
-    border: 2px solid rgba(47, 101, 66, 0.3); 
-    border-radius: 50%; 
-    position: absolute; 
-    animation: spin 10s linear infinite; 
-    border-top: 2px solid var(--primary-green); 
-}
-
-.inner-circle { 
-    width: 60%; height: 60%; 
-    background: radial-gradient(circle, rgba(47, 101, 66, 0.2) 0%, rgba(0,0,0,0) 70%); 
-    border-radius: 50%; 
-    display: flex; justify-content: center; align-items: center; 
-    border: 1px dashed var(--primary-green); 
-}
-
-.icon { font-size: 3rem; filter: drop-shadow(0 0 10px var(--primary-green)); }
-
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-.network-grid { 
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-    background-image: 
-        linear-gradient(rgba(47, 101, 66, 0.1) 1px, transparent 1px), 
-        linear-gradient(90deg, rgba(47, 101, 66, 0.1) 1px, transparent 1px); 
-    background-size: 50px 50px; 
-    z-index: -1; 
-}
-
-/* --- Sections --- */
-.section-container { padding: 80px 10%; border-top: 1px solid rgba(47, 101, 66, 0.1); }
-.section-title { font-family: 'Fira Code', monospace; font-size: 1.8rem; margin-bottom: 40px; color: var(--heading-color); }
-.hash { color: var(--primary-green); }
-
-/* --- Terminal --- */
-.terminal-window { 
-    background: var(--terminal-bg); 
-    border: 1px solid var(--card-bg); 
-    border-radius: 6px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
-    max-width: 800px; 
-}
-.terminal-header { 
-    background: var(--terminal-header); 
-    padding: 10px 15px; 
-    border-radius: 6px 6px 0 0; 
-    display: flex; align-items: center; 
-    border-bottom: 1px solid #0e1210; 
-}
-.btn-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 8px; }
-.red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
-.title { margin-left: 10px; font-family: monospace; color: #8aaaaa; font-size: 0.8rem; }
-.terminal-body { padding: 20px; font-family: 'Fira Code', monospace; color: var(--text-color); font-size: 0.95rem; }
-.cmd { color: #5bb57b; }
-.highlight { color: #fff; font-weight: bold; border-bottom: 1px dashed var(--primary-green); }
-
-/* --- Skill Cards --- */
-.topology-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-
-.skill-card { 
-    background: var(--card-bg); /* استخدام اللون #172B23 */
-    border: 1px solid rgba(47, 101, 66, 0.3); 
-    padding: 25px; 
-    position: relative; 
-    transition: 0.3s; 
+.gallery-item {
+    background: var(--card-bg);
+    padding: 10px;
+    text-align: center;
+    border: 1px solid var(--glass-border);
     border-radius: 4px;
+    transition: 0.3s;
 }
-.skill-card:hover { 
-    border-color: var(--primary-green); 
-    transform: translateY(-5px); 
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4); 
+.gallery-item:hover { border-color: var(--primary-green); transform: scale(1.02); }
+.img-placeholder {
+    width: 100%;
+    height: 100px;
+    background: #0e1210;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 0.7rem;
+    margin-bottom: 10px;
+    /* استبدل هذا بـ <img> حقيقية في الـ HTML */
 }
-.skill-card h3 { margin-bottom: 15px; color: #fff; font-family: 'Fira Code', monospace; }
-.skill-card ul { list-style: none; }
-.skill-card li { margin-bottom: 8px; color: #b0c4b1; padding-left: 15px; position: relative; }
-.skill-card li::before { content: ">"; position: absolute; left: 0; color: var(--primary-green); font-family: monospace; }
-.icon-box { font-size: 2rem; margin-bottom: 15px; color: #5bb57b; }
+.gallery-item span { font-size: 0.8rem; color: #fff; font-family: 'Fira Code', monospace; }
 
-/* --- Logs --- */
-.log-entry { display: flex; border-left: 2px solid var(--card-bg); margin-bottom: 30px; padding-left: 20px; position: relative; }
-.log-entry::before { 
-    content: ""; width: 10px; height: 10px; 
-    background: var(--bg-color); 
-    border: 2px solid var(--primary-green); 
-    border-radius: 50%; 
-    position: absolute; left: -7px; top: 0; 
+/* --- Certs Grid --- */
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.cert-card {
+    background: linear-gradient(145deg, var(--card-bg), #0e1210);
+    padding: 30px;
+    border: 1px solid var(--glass-border);
+    text-align: center;
+    border-radius: 8px;
 }
-.log-date { min-width: 120px; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #6a8f7b; padding-top: 2px; }
-.log-details h3 { color: #fff; margin-bottom: 5px; }
-.log-desc { color: #a0a0a0; margin-bottom: 10px; font-size: 0.95rem; }
-.tags span { 
-    display: inline-block; 
-    background: rgba(47, 101, 66, 0.2); 
-    color: #8fcea0; 
-    padding: 2px 8px; 
-    border-radius: 4px; 
-    font-size: 0.75rem; 
-    font-family: 'Fira Code', monospace; 
-    margin-right: 5px; 
-    border: 1px solid rgba(47, 101, 66, 0.3); 
-}
+.cert-icon { font-size: 3rem; margin-bottom: 15px; }
+.cert-card small { display: block; margin-top: 10px; color: var(--primary-green); font-family: 'Fira Code'; }
 
-/* --- Footer --- */
-footer { 
-    text-align: center; 
-    padding: 40px; 
-    border-top: 1px solid var(--card-bg); 
-    font-family: 'Fira Code', monospace; 
-    background: var(--bg-color); 
+/* --- Speed Challenge --- */
+.speed-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    background: #000;
+    padding: 40px;
+    border: 2px solid var(--primary-green);
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
 }
-footer a { color: var(--primary-green); text-decoration: none; }
-.copyright { color: #555; font-size: 0.8rem; margin-top: 10px; }
+@media (max-width: 768px) { .speed-box { flex-direction: column; text-align: center; } }
+
+.speed-meter {
+    border: 5px solid var(--primary-green);
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    box-shadow: 0 0 20px var(--glow-color);
+}
+.speed-value { font-size: 3rem; font-weight: bold; color: #fff; }
+.speed-unit { font-size: 1rem; color: var(--primary-green); }
+
+.challenge-text { margin-top: 15px; color: #ff5f56; font-style: italic; }
+
+/* --- Contact Footer Links --- */
+.contact-links {
+    display: flex; justify-content: center; gap: 20px; margin: 30px 0;
+}
+.contact-btn {
+    padding: 10px 20px;
+    border: 1px solid var(--glass-border);
+    color: #fff !important;
+    border-radius: 4px;
+    display: flex; align-items: center; gap: 10px;
+}
+.contact-btn:hover { border-color: var(--primary-green); background: rgba(47, 101, 66, 0.2); }
